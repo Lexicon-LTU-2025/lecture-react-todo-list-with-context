@@ -3,6 +3,7 @@ import { Todo } from '.';
 import { TodoContext } from './context';
 
 export const TodoList = (): ReactElement => {
+  // This is the consumer part of the context. Here we 'subsribe' to the context and can use the data it shares.
   const { todos, move, remove } = useContext(TodoContext);
 
   return (
