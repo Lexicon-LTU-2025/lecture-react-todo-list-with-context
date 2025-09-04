@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Outlet } from 'react-router';
+import { Header } from '../header';
 
 export const App = () => {
   useEffect(() => {
@@ -8,6 +9,7 @@ export const App = () => {
 
   return (
     <>
+      <Header />
       <Outlet />
     </>
   );
