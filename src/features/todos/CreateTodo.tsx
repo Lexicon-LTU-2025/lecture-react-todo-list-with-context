@@ -1,8 +1,12 @@
-import { useRef, type FormEventHandler, type ReactElement } from 'react';
+import { useContext, useRef, type FormEventHandler, type ReactElement } from 'react';
 import type { ITodo } from '.';
+import { TodoContext } from './context';
+import { useNavigate } from 'react-router';
 
 export const CreateTodo = (): ReactElement => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const { add } = useContext(TodoContext);
+  const navigate = useNavigate();
 
   const handleOnSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
@@ -13,8 +17,9 @@ export const CreateTodo = (): ReactElement => {
     };
 
     console.log('Submitted', newTodo);
-    // todos.actions.add(newTodo);
+    add(newTodo);
     inputRef.current!.value = '';
+    navigate('/');
   };
 
   return (

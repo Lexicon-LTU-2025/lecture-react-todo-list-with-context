@@ -1,23 +1,16 @@
-import type { ReactElement } from 'react';
-import { Todo, type ITodo } from '.';
-import { useList } from '../../useList';
+import { useContext, type ReactElement } from 'react';
+import { Todo } from '.';
+import { TodoContext } from './context';
 
 export const TodoList = (): ReactElement => {
-  const todos = useList<ITodo>('todos', []);
+  const { todos, move, remove } = useContext(TodoContext);
 
   return (
     <section className="todo-list">
-      {todos.list.length === 0 ? (
+      {todos.length === 0 ? (
         <p>No todos...</p>
       ) : (
-        todos.list.map((todo) => (
-          <Todo
-            key={todo.id}
-            onMove={todos.actions.move}
-            onRemove={todos.actions.remove}
-            todo={todo}
-          />
-        ))
+        todos.map((todo) => <Todo key={todo.id} onMove={move} onRemove={remove} todo={todo} />)
       )}
     </section>
   );
