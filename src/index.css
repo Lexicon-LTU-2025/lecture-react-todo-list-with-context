@@ -1,0 +1,8 @@
+@import url('./components/app/App.css');
+
+@import url('./features/todos/index.todos.css');
+
+.material-symbols-outlined:hover {
+  cursor: pointer;
+  font-variation-settings: 'FILL' 1;
+}
