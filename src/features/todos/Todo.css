@@ -9,3 +9,11 @@
   color: lightgray;
   font-variation-settings: 'FILL' 0;
 }
+
+.todo .favorite:hover {
+  font-variation-settings: 'FILL' 0;
+}
+
+.todo .favorite.is-favorite {
+  font-variation-settings: 'FILL' 1;
+}

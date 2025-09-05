@@ -1,5 +1,6 @@
-import type { ReactElement } from 'react';
+import { useContext, type ReactElement } from 'react';
 import type { Direction, ITodo } from './types.todos';
+import { FavoriteContext } from '../favorites/context/FavoriteContext';
 
 interface ITodoProps {
   onMove: (todo: ITodo, direction: Direction) => void;
@@ -8,6 +9,20 @@ interface ITodoProps {
 }
 
 export const Todo = ({ onMove, onRemove, todo }: ITodoProps): ReactElement => {
+  const { checkIfFavorite, add, remove } = useContext(FavoriteContext);
+
+  const isFavorite = checkIfFavorite(todo);
+  const favClasses = ['material-symbols-outlined', 'favorite'];
+  if (isFavorite) favClasses.push('is-favorite');
+
+  const handleOnFavoriteClick = (): void => {
+    if (isFavorite) {
+      return remove(todo);
+    }
+
+    add(todo);
+  };
+
   return (
     <article className="todo">
       <p>{todo.content}</p>
@@ -20,6 +35,9 @@ export const Todo = ({ onMove, onRemove, todo }: ITodoProps): ReactElement => {
         </span>
         <span className="material-symbols-outlined move-down" onClick={() => onMove(todo, 'DOWN')}>
           arrow_circle_down
+        </span>
+        <span className={favClasses.join(' ')} onClick={handleOnFavoriteClick}>
+          favorite
         </span>
       </div>
     </article>

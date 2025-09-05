@@ -1,5 +1,5 @@
 import { useState, type ReactElement, type ReactNode } from 'react';
-import { IFavoriteContext } from './FavoriteContext';
+import { FavoriteContext, type IFavoriteContext } from './FavoriteContext';
 import type { ITodo } from '../../todos';
 
 interface IFavoriteContextProviderProps {
@@ -12,15 +12,15 @@ export const FavoriteContextProvider = ({
   const [favorites, setFavorites] = useState<ITodo[]>([]);
 
   const add = (todo: ITodo): void => setFavorites([todo, ...favorites]);
-  const isFavorite = (todo: ITodo): boolean => favorites.includes(todo);
+  const checkIfFavorite = (todo: ITodo): boolean => favorites.includes(todo);
   const remove = (todo: ITodo): void => setFavorites(favorites.filter((f) => f.id !== todo.id));
 
   const values: IFavoriteContext = {
     add,
     favorites,
-    isFavorite,
+    checkIfFavorite,
     remove,
   };
 
-  return <IFavoriteContext.Provider value={values}>{children}</IFavoriteContext.Provider>;
+  return <FavoriteContext.Provider value={values}>{children}</FavoriteContext.Provider>;
 };
