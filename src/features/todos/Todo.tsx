@@ -1,9 +1,9 @@
-import { useContext, type ReactElement } from 'react';
+import { useContext, type ReactElement, type ReactNode } from 'react';
 import type { Direction, ITodo } from './types.todos';
 import { FavoriteContext } from '../favorites/context/FavoriteContext';
 
 interface ITodoProps {
-  onMove: (todo: ITodo, direction: Direction) => void;
+  onMove?: (todo: ITodo, direction: Direction) => void;
   onRemove: (todo: ITodo) => void;
   todo: ITodo;
 }
@@ -23,6 +23,25 @@ export const Todo = ({ onMove, onRemove, todo }: ITodoProps): ReactElement => {
     add(todo);
   };
 
+  const renderMoveIcons = (): ReactNode => {
+    if (onMove)
+      return (
+        <>
+          <span className="material-symbols-outlined move-up" onClick={() => onMove(todo, 'UP')}>
+            arrow_circle_up
+          </span>
+          <span
+            className="material-symbols-outlined move-down"
+            onClick={() => onMove(todo, 'DOWN')}
+          >
+            arrow_circle_down
+          </span>
+        </>
+      );
+
+    return null;
+  };
+
   return (
     <article className="todo">
       <p>{todo.content}</p>
@@ -30,12 +49,7 @@ export const Todo = ({ onMove, onRemove, todo }: ITodoProps): ReactElement => {
         <span className="material-symbols-outlined" onClick={() => onRemove(todo)}>
           delete
         </span>
-        <span className="material-symbols-outlined move-up" onClick={() => onMove(todo, 'UP')}>
-          arrow_circle_up
-        </span>
-        <span className="material-symbols-outlined move-down" onClick={() => onMove(todo, 'DOWN')}>
-          arrow_circle_down
-        </span>
+        {renderMoveIcons()}
         <span className={favClasses.join(' ')} onClick={handleOnFavoriteClick}>
           favorite
         </span>

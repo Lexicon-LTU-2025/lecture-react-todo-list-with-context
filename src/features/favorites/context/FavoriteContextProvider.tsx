@@ -1,5 +1,5 @@
 import { useState, type ReactElement, type ReactNode } from 'react';
-import { FavoriteContext, type IFavoriteContext } from './FavoriteContext';
+import { FavoriteContext, type IFavoriteContext } from '.';
 import type { ITodo } from '../../todos';
 
 interface IFavoriteContextProviderProps {
