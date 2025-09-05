@@ -13,5 +13,10 @@ export const Favorites = (): ReactElement => {
     return 'No selected favorites...';
   };
 
-  return <section className="favorites">{renderFavorites()}</section>;
+  return (
+    <section className="favorites">
+      <h2>Favorites</h2>
+      {renderFavorites()}
+    </section>
+  );
 };

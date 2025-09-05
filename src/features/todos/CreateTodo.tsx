@@ -27,12 +27,15 @@ export const CreateTodo = (): ReactElement => {
   };
 
   return (
-    <form className="create-todo" onSubmit={handleOnSubmit}>
-      <div>
-        <label htmlFor="">Todo name</label>
-        <input ref={inputRef} type="text" />
-        <button type="submit">Save</button>
-      </div>
-    </form>
+    <>
+      <h2>Create a new Todo</h2>
+      <form className="create-todo" onSubmit={handleOnSubmit}>
+        <div>
+          <label htmlFor="">Todo name</label>
+          <input ref={inputRef} type="text" />
+          <button type="submit">Save</button>
+        </div>
+      </form>
+    </>
   );
 };

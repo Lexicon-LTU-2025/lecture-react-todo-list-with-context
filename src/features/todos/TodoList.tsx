@@ -8,6 +8,7 @@ export const TodoList = (): ReactElement => {
 
   return (
     <section className="todo-list">
+      <h2>Todo List</h2>
       {todos.length === 0 ? (
         <p>No todos...</p>
       ) : (
