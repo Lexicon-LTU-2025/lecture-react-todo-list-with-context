@@ -3,9 +3,12 @@ import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router';
 import { router } from './router';
 import { TodoContextProvider } from './features/todos/context';
+import { FavoriteContextProvider } from './features/favorites/context/FavoriteContextProvider';
 
 createRoot(document.getElementById('root')!).render(
   <TodoContextProvider>
-    <RouterProvider router={router} />
+    <FavoriteContextProvider>
+      <RouterProvider router={router} />
+    </FavoriteContextProvider>
   </TodoContextProvider>
 );
